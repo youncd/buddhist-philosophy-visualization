@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12연기와 8정도 - 마음의 선택</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #000;
+            overflow: hidden;
+            position: relative;
+            cursor: crosshair;
+        }
+        
+        .universe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #16213e 50%, #0f0f0f 100%);
+        }
+        
+        /* 중앙의 식(識) - 마음의 시작점 */
+        .consciousness-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #fff 20%, #74b9ff 60%, #0984e3 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 900;
+            font-size: 1.2em;
+            text-align: center;
+            box-shadow: 
+                0 0 50px rgba(116, 185, 255, 0.8),
+                inset 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: coreBreathing 3s ease-in-out infinite;
+            z-index: 50;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .consciousness-core .sanskrit {
+            font-size: 0.7em;
+            opacity: 0.8;
+        }
+        
+        .consciousness-core:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        @keyframes coreBreathing {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 50px rgba(116, 185, 255, 0.8);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.05);
+                box-shadow: 0 0 80px rgba(116, 185, 255, 1);
+            }
+        }
+        
+        /* 12연기 원형 구조 */
+        .twelve-links-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border: 2px solid rgba(116, 185, 255, 0.3);
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        
+        .link-point {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(116, 185, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        
+        .link-point:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        /* 특별한 12연기 요소들 - 생, 식, 명색, 육처, 촉, 수 */
+        .special-link {
+            background: rgba(255, 215, 0, 0.9) !important;
+            color: #000 !important;
+            font-weight: 900 !important;
+            font-size: 0.9em !important;
+            opacity: 1 !important;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+                opacity: 1;
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(255, 215, 0, 1), 0 0 35px rgba(255, 255, 255, 0.6);
+                opacity: 0.9;
+            }
+        }
+        
+        /* 고성제 (고통의 길) 영역 */
+        .suffering-path {
+            position: absolute;
+            top: 15%;
+            left: 8%;
+            width: 380px;
+            height: 500px;
+            background: 
+                linear-gradient(45deg, rgba(231, 76, 60, 0.1) 0%, rgba(192, 57, 43, 0.2) 100%);
+            border: 3px solid #e74c3c;
+            border-radius: 20px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+        
+        .suffering-path.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* 도성제 (해탈의 길) - 8차선 고속도로 */
+        .liberation-highway {
+            position: absolute;
+            top: 15%;
+            right: 8%;
+            width: 380px;
+            height: 500px;
+            background: 
+                linear-gradient(45deg, rgba(46, 204, 113, 0.1) 0%, rgba(39, 174, 96, 0.2) 100%);
+            border: 3px solid #2ecc71;
+            border-radius: 20px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+        
+        .liberation-highway.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* 8차선 고속도로 구조 */
+        .highway-lanes {
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            right: 20px;
+            height: 350px;
+            background: linear-gradient(to bottom, 
+                #2ecc71 0%, #2ecc71 12.5%,
+                #27ae60 12.5%, #27ae60 25%,
+                #3498db 25%, #3498db 37.5%,
+                #2980b9 37.5%, #2980b9 50%,
+                #f39c12 50%, #f39c12 62.5%,
+                #e67e22 62.5%, #e67e22 75%,
+                #9b59b6 75%, #9b59b6 87.5%,
+                #8e44ad 87.5%, #8e44ad 100%);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 각 차선의 팔정도 라벨 */
+        .lane {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 12.5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-shadow: 0 0 10px rgba(0,0,0,0.7);
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: all 0.6s ease;
+        }
+        
+        .lane.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .lane:nth-child(1) { top: 0; }
+        .lane:nth-child(2) { top: 12.5%; }
+        .lane:nth-child(3) { top: 25%; }
+        .lane:nth-child(4) { top: 37.5%; }
+        .lane:nth-child(5) { top: 50%; }
+        .lane:nth-child(6) { top: 62.5%; }
+        .lane:nth-child(7) { top: 75%; }
+        .lane:nth-child(8) { top: 87.5%; }
+        
+        /* 탐진치 요소들 (고성제) */
+        .suffering-elements {
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            right: 20px;
+            height: 350px;
+        }
+        
+        .suffering-element {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0) rotate(180deg);
+            transition: all 0.6s ease;
+            cursor: pointer;
+        }
+        
+        .suffering-element.appear {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        
+        .greed { 
+            top: 50px; 
+            left: 50px; 
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            animation: chaosFloat 4s ease-in-out infinite;
+        }
+        .anger { 
+            top: 150px; 
+            right: 50px; 
+            background: linear-gradient(45deg, #8e44ad, #7b2d8e);
+            animation: chaosFloat 4s ease-in-out infinite 0.5s;
+        }
+        .delusion { 
+            bottom: 80px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #34495e, #2c3e50);
+            animation: chaosFloat 4s ease-in-out infinite 1s;
+        }
+        
+        .attachment {
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            animation: chaosFloat 4s ease-in-out infinite 1.5s;
+        }
+        
+        @keyframes chaosFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(-8px) rotate(-5deg) scale(0.95); }
+            75% { transform: translateY(-20px) rotate(3deg) scale(1.02); }
+        }
+        
+        /* 제목 라벨 */
+        .realm-title {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.3em;
+            font-weight: 900;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            color: white;
+            text-shadow: 0 0 20px currentColor;
+        }
+        
+        .suffering-title {
+            background: rgba(231, 76, 60, 0.2);
+            border-color: #e74c3c;
+            color: #ff6b6b;
+        }
+        
+        .liberation-title {
+            background: rgba(46, 204, 113, 0.2);
+            border-color: #2ecc71;
+            color: #51cf66;
+        }
+        
+        /* 결과 비교판 */
+        .comparison-board {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+            opacity: 0;
+            transform: translateX(-50%) translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .comparison-board.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .result-card {
+            padding: 20px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(20px);
+            border: 2px solid;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .suffering-card {
+            background: rgba(231, 76, 60, 0.2);
+            border-color: #e74c3c;
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.3);
+        }
+        
+        .liberation-card {
+            background: rgba(46, 204, 113, 0.2);
+            border-color: #2ecc71;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
+        }
+        
+        /* 메인 제목 */
+        .main-title {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            z-index: 100;
+        }
+        
+        .main-title h1 {
+            font-size: 2.2em;
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-shadow: 0 0 30px rgba(116, 185, 255, 0.8);
+        }
+        
+        .main-title p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        /* 선택 버튼들 */
+        .choice-buttons {
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 30px;
+            z-index: 60;
+        }
+        
+        .choice-btn {
+            padding: 12px 25px;
+            border: 3px solid;
+            border-radius: 20px;
+            background: transparent;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans KR', sans-serif;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .choice-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .choice-btn:hover::before {
+            left: 100%;
+        }
+        
+        .suffering-btn {
+            border-color: #e74c3c;
+            color: #ff6b6b;
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+        }
+        
+        .suffering-btn:hover {
+            background: rgba(231, 76, 60, 0.2);
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        .liberation-btn {
+            border-color: #2ecc71;
+            color: #51cf66;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+        }
+        
+        .liberation-btn:hover {
+            background: rgba(46, 204, 113, 0.2);
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        /* 순환 화살표 */
+        .cycle-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .cycle-path {
+            stroke: #e74c3c;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 20, 10;
+            animation: rotateCycle 10s linear infinite;
+        }
+        
+        .liberation-path {
+            stroke: #2ecc71;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 15, 5;
+            animation: liberationFlow 8s linear infinite;
+        }
+        
+        @keyframes rotateCycle {
+            to { stroke-dashoffset: -60; }
+        }
+        
+        @keyframes liberationFlow {
+            to { stroke-dashoffset: 40; }
+        }
+        
+        /* 에너지 파동 */
+        .energy-wave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .suffering-wave {
+            background: radial-gradient(circle, rgba(231, 76, 60, 0.4) 0%, transparent 70%);
+            animation: sufferingWave 2.5s ease-out;
+        }
+        
+        .liberation-wave {
+            background: radial-gradient(circle, rgba(46, 204, 113, 0.4) 0%, transparent 70%);
+            animation: liberationWave 2.5s ease-out;
+        }
+        
+        @keyframes sufferingWave {
+            to {
+                width: 1200px;
+                height: 1200px;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes liberationWave {
+            to {
+                width: 1400px;
+                height: 1400px;
+                opacity: 0;
+            }
+        }
+        
+        /* 인터랙션 가이드 */
+        .guide {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8em;
+            text-align: right;
+            animation: fadeInOut 4s ease-in-out infinite;
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .suffering-path, .liberation-highway {
+                width: 280px;
+                height: 450px;
+            }
+            
+            .consciousness-core {
+                width: 100px;
+                height: 100px;
+                font-size: 1em;
+            }
+            
+            .main-title h1 {
+                font-size: 1.8em;
+            }
+            
+            .choice-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .comparison-board {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="universe" id="universe">
+        <!-- 메인 제목 -->
+        <div class="main-title">
+            <h1>🔄 12연기와 8정도</h1>
+            <p>식(識)에서 시작되는 두 갈래 길</p>
+        </div>
+        
+        <!-- 중앙의 식(識) - 의식의 시작점 -->
+        <div class="consciousness-core" id="consciousnessCore">
+            식(識)<br>
+            <span class="sanskrit">Vijñāna</span>
+        </div>
+        
+        <!-- 12연기 원형 구조 -->
+        <div class="twelve-links-circle" id="twelveLinksCircle">
+            <!-- 12연기 각 지점들 - 수(受)를 중심 분기점으로 배치 -->
+            <div class="link-point" style="top: 0; left: 50%; transform: translateX(-50%);" title="1. 무명(無明) - 근본무지">무명</div>
+            <div class="link-point" style="top: 8%; right: 15%;" title="2. 행(行) - 의도적 행위">행</div>
+            <div class="link-point special-link" style="top: 20%; right: 5%;" title="3. 식(識) - 의식">식</div>
+            <div class="link-point special-link" style="top: 35%; right: 0;" title="4. 명색(名色) - 정신과 물질">명색</div>
+            <div class="link-point special-link" style="top: 50%; right: 5%;" title="5. 육처(六處) - 여섯 감각기관">육처</div>
+            <div class="link-point special-link" style="top: 65%; right: 15%;" title="6. 촉(觸) - 접촉">촉</div>
+            <div class="link-point special-link" style="bottom: 15%; left: 50%; transform: translateX(-50%);" title="7. 수(受) - 느낌/감수 [분기점]">수</div>
+            
+            <!-- 탐진치 경로 (왼쪽) -->
+            <div class="link-point" style="bottom: 25%; left: 15%;" title="8. 애(愛) - 갈애 [탐진치 반응]">애</div>
+            <div class="link-point" style="top: 50%; left: 0;" title="9. 취(取) - 집착">취</div>
+            <div class="link-point" style="top: 30%; left: 8%;" title="10. 유(有) - 존재">유</div>
+            <div class="link-point special-link" style="top: 15%; left: 20%;" title="11. 생(生) - 태어남">생</div>
+            <div class="link-point" style="top: 8%; left: 35%;" title="12. 로사(老死) - 늙음과 죽음">로사</div>
+        </div>
+        
+        <!-- 순환 화살표 SVG -->
+        <svg class="cycle-arrow" viewBox="0 0 700 700">
+            <defs>
+                <marker id="arrowSuffering" markerWidth="10" markerHeight="7" 
+                 refX="10" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c" />
+                </marker>
+                <marker id="arrowLiberation" markerWidth="10" markerHeight="7" 
+                 refX="10" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#2ecc71" />
+                </marker>
+            </defs>
+            <circle cx="350" cy="350" r="300" class="cycle-path" 
+                    marker-end="url(#arrowSuffering)" opacity="0" id="sufferingCycle" />
+            <path d="M 350 50 Q 650 350 350 650 Q 50 350 350 50" class="liberation-path" 
+                  marker-end="url(#arrowLiberation)" opacity="0" id="liberationCycle" />
+        </svg>
+        
+        <!-- 고성제 (고통의 길) 영역 -->
+        <div class="suffering-path" id="sufferingPath">
+            <div class="realm-title suffering-title">
+                고성제 → 집성제<br>
+                <span style="font-size: 0.7em;">고집고집의 악순환</span>
+            </div>
+            
+            <div class="suffering-elements">
+                <div class="suffering-element greed">
+                    탐욕<br>
+                    <span style="font-size: 0.7em;">貪</span>
+                </div>
+                <div class="suffering-element anger">
+                    성냄<br>
+                    <span style="font-size: 0.7em;">瞋</span>
+                </div>
+                <div class="suffering-element delusion">
+                    어리석음<br>
+                    <span style="font-size: 0.7em;">癡</span>
+                </div>
+                <div class="suffering-element attachment">
+                    집착<br>
+                    <span style="font-size: 0.7em;">執</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 도성제 (해탈의 길) - 8차선 고속도로 -->
+        <div class="liberation-highway" id="liberationHighway">
+            <div class="realm-title liberation-title">
+                도성제 → 멸성제<br>
+                <span style="font-size: 0.7em;">8차선 해탈고속도로</span>
+            </div>
+            
+            <div class="highway-lanes">
+                <div class="lane">1차선: 정견 (正見) - 사성제를 바르게 봄</div>
+                <div class="lane">2차선: 정사유 (正思惟) - 바른 생각</div>
+                <div class="lane">3차선: 정어 (正語) - 바른 말</div>
+                <div class="lane">4차선: 정업 (正業) - 바른 행동</div>
+                <div class="lane">5차선: 정명 (正命) - 바른 생계</div>
+                <div class="lane">6차선: 정정진 (正精進) - 바른 노력</div>
+                <div class="lane">7차선: 정념 (正念) - 바른 사띠</div>
+                <div class="lane">8차선: 정정 (正定) - 바른 집중</div>
+            </div>
+        </div>
+        
+        <!-- 선택 버튼들 -->
+        <div class="choice-buttons">
+            <button class="choice-btn suffering-btn" onclick="chooseSufferingPath()">
+                🔥 탐진치로 반응 (고집)
+            </button>
+            <button class="choice-btn liberation-btn" onclick="chooseLiberationPath()">
+                🛣️ 팔정도로 반응 (도멸)
+            </button>
+        </div>
+        
+        <!-- 결과 비교판 -->
+        <div class="comparison-board" id="comparisonBoard">
+            <div class="result-card suffering-card" id="sufferingCard">
+                <h3>⚡ 집성제의 결과</h3>
+                <p style="margin: 10px 0;">고집 → 고집 → 고집</p>
+                <p style="font-size: 0.9em;">윤회의 사슬 강화<br>무명→갈애→집착→고통</p>
+            </div>
+            <div class="result-card liberation-card" id="liberationCard">
+                <h3>🌟 도성제의 결과</h3>
+                <p style="margin: 10px 0;">도멸 → 도멸 → 도멸</p>
+                <p style="font-size: 0.9em;">찰나해탈 체험<br>위빠사나→지혜→자유</p>
+            </div>
+        </div>
+        
+        <!-- 인터랙션 가이드 -->
+        <div class="guide">
+            💡 식(識)을 클릭하거나 버튼 선택<br>
+            스페이스바: 랜덤 선택 | R: 리셋<br>
+            1/2: 직접 선택
+        </div>
+    </div>
+
+    <script>
+        let currentChoice = null;
+        let animationTimeout = null;
+        
+        // 에너지 파동 생성
+        function createEnergyWave(type) {
+            const wave = document.createElement('div');
+            wave.className = `energy-wave ${type}-wave`;
+            document.getElementById('universe').appendChild(wave);
+            
+            setTimeout(() => wave.remove(), 2500);
+        }
+        
+        // 고성제 선택 (탐진치 반응)
+        function chooseSufferingPath() {
+            if (currentChoice === 'suffering') return;
+            
+            clearTimeout(animationTimeout);
+            currentChoice = 'suffering';
+            
+            // 식(識) 핵 변화
+            const core = document.getElementById('consciousnessCore');
+            core.style.background = 'radial-gradient(circle, #e74c3c 20%, #c0392b 60%, #8e44ad 100%)';
+            core.style.boxShadow = '0 0 80px rgba(231, 76, 60, 1)';
+            core.innerHTML = '무명<br><span class="sanskrit">Avidyā</span>';
+            
+            // 에너지 파동
+            createEnergyWave('suffering');
+            
+            // 고성제 영역 활성화
+            document.getElementById('sufferingPath').classList.add('active');
+            document.getElementById('liberationHighway').classList.remove('active');
+            
+            // 12연기 순환 표시
+            document.getElementById('sufferingCycle').style.opacity = '0.8';
+            document.getElementById('liberationCycle').style.opacity = '0';
+            
+            // 탐진치 요소들 나타내기
+            setTimeout(() => {
+                document.querySelectorAll('.suffering-element').forEach((el, i) => {
+                    setTimeout(() => el.classList.add('appear'), i * 300);
+                });
+            }, 800);
+            
+            // 결과 표시
+            setTimeout(() => showComparison('suffering'), 2000);
+            
+            // 화면 진동 효과
+            setTimeout(() => {
+                document.body.style.animation = 'shake 0.6s ease-in-out 3';
+            }, 1500);
+            
+            animationTimeout = setTimeout(resetAnimation, 7000);
+        }
+        
+        // 도성제 선택 (팔정도 반응)
+        function chooseLiberationPath() {
+            if (currentChoice === 'liberation') return;
+            
+            clearTimeout(animationTimeout);
+            currentChoice = 'liberation';
+            
+            // 식(識) 핵 변화
+            const core = document.getElementById('consciousnessCore');
+            core.style.background = 'radial-gradient(circle, #2ecc71 20%, #27ae60 60%, #f39c12 100%)';
+            core.style.boxShadow = '0 0 80px rgba(46, 204, 113, 1)';
+            core.innerHTML = '지혜<br><span class="sanskrit">Prajñā</span>';
+            
+            // 에너지 파동
+            createEnergyWave('liberation');
+            
+            // 도성제 영역 활성화
+            document.getElementById('liberationHighway').classList.add('active');
+            document.getElementById('sufferingPath').classList.remove('active');
+            
+            // 해탈의 길 표시
+            document.getElementById('liberationCycle').style.opacity = '0.8';
+            document.getElementById('sufferingCycle').style.opacity = '0';
+            
+            // 8차선 고속도로 애니메이션
+            setTimeout(() => {
+                document.querySelectorAll('.lane').forEach((lane, i) => {
+                    setTimeout(() => lane.classList.add('show'), i * 200);
+                });
+            }, 800);
+            
+            // 결과 표시
+            setTimeout(() => showComparison('liberation'), 2000);
+            
+            // 화면 광채 효과
+            setTimeout(() => {
+                document.body.style.filter = 'brightness(1.3) contrast(1.2)';
+                setTimeout(() => document.body.style.filter = 'none', 1500);
+            }, 1500);
+            
+            animationTimeout = setTimeout(resetAnimation, 7000);
+        }
+        
+        // 결과 비교 표시
+        function showComparison(type) {
+            const board = document.getElementById('comparisonBoard');
+            board.classList.add('show');
+            
+            if (type === 'suffering') {
+                document.getElementById('sufferingCard').style.transform = 'scale(1.1)';
+                document.getElementById('liberationCard').style.opacity = '0.5';
+            } else {
+                document.getElementById('liberationCard').style.transform = 'scale(1.1)';
+                document.getElementById('sufferingCard').style.opacity = '0.5';
+            }
+        }
+        
+        // 애니메이션 리셋
+        function resetAnimation() {
+            currentChoice = null;
+            
+            // 식(識) 핵 원상복구
+            const core = document.getElementById('consciousnessCore');
+            core.style.background = 'radial-gradient(circle, #fff 20%, #74b9ff 60%, #0984e3 100%)';
+            core.style.boxShadow = '0 0 50px rgba(116, 185, 255, 0.8)';
+            core.innerHTML = '식(識)<br><span class="sanskrit">Vijñāna</span>';
+            
+            // 영역들 숨기기
+            document.querySelectorAll('.suffering-path, .liberation-highway').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // 요소들 숨기기
+            document.querySelectorAll('.suffering-element, .lane').forEach(el => {
+                el.classList.remove('appear', 'show');
+            });
+            
+            // 순환 화살표 숨기기
+            document.getElementById('sufferingCycle').style.opacity = '0';
+            document.getElementById('liberationCycle').style.opacity = '0';
+            
+            // 결과 숨기기
+            const board = document.getElementById('comparisonBoard');
+            board.classList.remove('show');
+            document.getElementById('sufferingCard').style.transform = 'scale(1)';
+            document.getElementById('liberationCard').style.transform = 'scale(1)';
+            document.getElementById('sufferingCard').style.opacity = '1';
+            document.getElementById('liberationCard').style.opacity = '1';
+            
+            // 효과 제거
+            document.body.style.animation = '';
+            document.body.style.filter = '';
+        }
+        
+        // 이벤트 리스너
+        document.getElementById('consciousnessCore').addEventListener('click', () => {
+            Math.random() > 0.5 ? chooseLiberationPath() : chooseSufferingPath();
+        });
+        
+        // 팔정도 마우스 hover 이벤트
+        const liberationHighway = document.getElementById('liberationHighway');
+        liberationHighway.addEventListener('mouseenter', () => {
+            document.querySelectorAll('.lane').forEach((lane, i) => {
+                setTimeout(() => lane.classList.add('show'), i * 100);
+            });
+        });
+        
+        liberationHighway.addEventListener('mouseleave', () => {
+            if (currentChoice !== 'liberation') {
+                document.querySelectorAll('.lane').forEach(lane => {
+                    lane.classList.remove('show');
+                });
+            }
+        });
+        
+        // 키보드 이벤트
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case '1':
+                case 'ArrowLeft':
+                    chooseSufferingPath();
+                    break;
+                case '2':
+                case 'ArrowRight':
+                    chooseLiberationPath();
+                    break;
+                case ' ':
+                case 'Enter':
+                    e.preventDefault();
+                    document.getElementById('consciousnessCore').click();
+                    break;
+                case 'r':
+                case 'R':
+                    resetAnimation();
+                    break;
+            }
+        });
+        
+        // Shake 애니메이션 정의
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-8px); }
+                75% { transform: translateX(8px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // 배경 별 생성
+        function createStars() {
+            for (let i = 0; i < 80; i++) {
+                const star = document.createElement('div');
+                star.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 3 + 1}px;
+                    height: ${Math.random() * 3 + 1}px;
+                    background: white;
+                    border-radius: 50%;
+                    top: ${Math.random() * 100}%;
+                    left: ${Math.random() * 100}%;
+                    opacity: ${Math.random() * 0.8 + 0.2};
+                    animation: twinkle ${Math.random() * 3 + 2}s infinite;
+                `;
+                document.getElementById('universe').appendChild(star);
+            }
+        }
+        
+        // 별 깜빡임 애니메이션
+        const twinkleStyle = document.createElement('style');
+        twinkleStyle.textContent = `
+            @keyframes twinkle {
+                0%, 100% { opacity: 0.2; }
+                50% { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(twinkleStyle);
+        
+        // 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            
+            // 3초 후 자동 시연
+            setTimeout(() => chooseLiberationPath(), 3000);
+        });
+    </script>
+</body>
+</html>
