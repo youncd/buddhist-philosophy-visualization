@@ -23,7 +23,7 @@
 
 ## 🌐 라이브 데모
 
-[여기서 체험해보세요](https://yourusername.github.io/buddhist-philosophy-visualization/)
+[여기서 체험해보세요](https://youncd.github.io/buddhist-philosophy-visualization/)
 
 ## 🛠️ 기술 스택
 
